@@ -1,0 +1,17 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: istio-controlplane
+  namespace: istio-system
+spec:
+  profile: default
+  meshConfig:
+    enableAutoMtls: true
+  values:
+    gateways:
+      istio-ingressgateway:
+        type: LoadBalancer
+        enabled: true
+    pilot:
+      env:
+        PILOT_ENABLED_GATEWAY_API: "true"
